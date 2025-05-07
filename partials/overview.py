@@ -57,6 +57,26 @@ def overview(entry_waiting_time, beaconchain_entering, exit_waiting_time, beacon
 
 			<div class="card shadow border-light" style="max-width: 18rem;">
 			  <div class="card-body">
+			    <h5 class="card-title">Consolidations</h5>
+			    <div class="card-text">
+			    	<div class="d-flex justify-content-between">
+			    		<span>Pectrified: </span>
+			    		<span><a href="https://pectrified.com/mainnet" target="_blank">Queues & Requests</a></span>
+		    		</div>
+				    <div class="d-flex justify-content-between">
+				    	<span>Beaconcha.in: </span>
+				    	<span><a href="https://light-mainnet.beaconcha.in/validators/el_consolidations" target="_blank">Requests</a></span>
+			    	</div>
+			    	<div class="d-flex justify-content-between">
+				    	<span>Pectra.info: </span>
+				    	<span><a href="https://www.pectra.info/consolidation" target="_blank">Rates by Entity</a></span>
+			    	</div>
+				</div>
+			  </div>
+			</div>
+
+			<div class="card shadow border-light" style="max-width: 18rem;">
+			  <div class="card-body">
 			    <h5 class="card-title">Network</h5>
 			    <div class="card-text">
 			    	<div class="d-flex justify-content-between">
