@@ -5,7 +5,7 @@ historical_charts = f"""
 
 		<div class="card shadow border-light mt-4">
 		  <div class="card-body">
-		    <h5 class="card-title">Validator Queue</h5>
+		    <h5 class="card-title">Validator Queue (ETH)</h5>
 		    <div class="card-text">
 		    	<div class="text-center text-sm-end">
 			    	{chart_filter("queueChart")}

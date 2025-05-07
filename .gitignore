@@ -1,7 +1,8 @@
-*~
-_site
-.jekyll-cache
-.jekyll-metadata
+**.env
+venv
+__pycache__
+**/__pycache__
 .DS_Store
 *.DS_Store
 **/.DS_Store
+notes.txt

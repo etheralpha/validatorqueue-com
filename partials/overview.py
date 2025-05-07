@@ -1,4 +1,4 @@
-def overview(entry_waiting_time, beacon_entering, exit_waiting_time, beacon_exiting, current_entry_churn, current_exit_churn, active_validators, amount_eth_staked, percent_eth_staked, staking_apr):
+def overview(entry_waiting_time, beaconchain_entering, exit_waiting_time, beaconchain_exiting, entry_churn, exit_churn, active_validators, amount_eth_staked, percent_eth_staked, staking_apr):
 	return f"""
 		<div class="row row-cols-1 row-cols-md-2 gap-4 justify-content-center mx-1">
 
@@ -7,8 +7,8 @@ def overview(entry_waiting_time, beacon_entering, exit_waiting_time, beacon_exit
 			    <h5 class="card-title">Entry Queue</h5>
 			    <div class="card-text">
 			    	<div class="d-flex justify-content-between">
-				    	<span>Validators: </span>
-				    	<span>{"{:,}".format(beacon_entering)}</span>
+				    	<span>ETH: </span>
+				    	<span>{"{:,}".format(beaconchain_entering)}</span>
 			    	</div>
 				    <div class="d-flex justify-content-between">
 				    	<span>Wait: </span>
@@ -16,7 +16,7 @@ def overview(entry_waiting_time, beacon_entering, exit_waiting_time, beacon_exit
 			    	</div>
 			    	<div class="d-flex justify-content-between">
 				    	<span>Churn: </span>
-				    	<span>{current_entry_churn}/epoch</span>
+				    	<span>{entry_churn}/epoch</span>
 			    	</div>
 				</div>
 			  </div>
@@ -27,8 +27,8 @@ def overview(entry_waiting_time, beacon_entering, exit_waiting_time, beacon_exit
 			    <h5 class="card-title">Exit Queue</h5>
 			    <div class="card-text">
 			    	<div class="d-flex justify-content-between">
-			    		<span>Validators: </span>
-			    		<span>{"{:,}".format(beacon_exiting)}</span>
+			    		<span>ETH: </span>
+			    		<span>{"{:,}".format(beaconchain_exiting)}</span>
 		    		</div>
 				    <div class="d-flex justify-content-between">
 				    	<span>Wait: </span>
@@ -49,7 +49,7 @@ def overview(entry_waiting_time, beacon_entering, exit_waiting_time, beacon_exit
 			    	</div>
 			    	<div class="d-flex justify-content-between">
 				    	<span>Churn: </span>
-				    	<span>{current_exit_churn}/epoch</span>
+				    	<span>{exit_churn}/epoch</span>
 			    	</div>
 				</div>
 			  </div>
@@ -75,5 +75,8 @@ def overview(entry_waiting_time, beacon_entering, exit_waiting_time, beacon_exit
 			  </div>
 			</div>
 
+		</div>
+		<div class="mt-3 mb-4 text-center">
+			<a href="https://pectrified.com" target="_blank">Monitor Consolidations</a>
 		</div>
 	"""

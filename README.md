@@ -7,6 +7,14 @@ The data is fetched using the [beaconcha.in API](https://beaconcha.in/api/v1/doc
 
 The data is updated every ~ 15min. The first reading of each UTC+0 day is recorded for historical data.
 
-To execute locally, run `python build.py`. If that doesn't work then try `python3 build.py`.
+To execute/build locally:
+
+1. Create virtual environment: `python3 -m venv venv/`
+1. Start python virtual environment: `. venv/bin/activate`
+1. Install dependencies: `pip install -r requirements.txt`
+1. Run the script: `python build.py`
+1. Close virtual environment: `deactivate`
+1. Or run the last 4 steps in one command: `. venv/bin/activate && pip install -r requirements.txt && python build.py && deactivate`
+
 
 This project is maintained by [Ether Alpha](https://etheralpha.org/).
