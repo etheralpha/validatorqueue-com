@@ -96,7 +96,4 @@ def overview(entry_waiting_time, beaconchain_entering, exit_waiting_time, beacon
 			</div>
 
 		</div>
-		<div class="mt-3 mb-4 text-center">
-			<a href="https://pectrified.com" target="_blank">Monitor Consolidations</a>
-		</div>
 	"""
