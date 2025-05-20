@@ -47,6 +47,34 @@ historical_charts = f"""
 
 		<div class="card shadow border-light mt-4">
 		  <div class="card-body">
+		    <h5 class="card-title">Credentials (%)</h5>
+		    <div class="card-text">
+		    	<div class="text-center text-sm-end">
+			    	{chart_filter("credentialsPercentChart")}
+				</div>
+		    	<div>
+					<canvas id="credentialsPercentChart"></canvas>
+				</div>
+			</div>
+		  </div>
+		</div>
+
+		<div class="card shadow border-light mt-4">
+		  <div class="card-body">
+		    <h5 class="card-title">Credentials (Δ)</h5>
+		    <div class="card-text">
+		    	<div class="text-center text-sm-end">
+			    	{chart_filter("credentialsDiffChart")}
+				</div>
+		    	<div>
+					<canvas id="credentialsDiffChart"></canvas>
+				</div>
+			</div>
+		  </div>
+		</div>
+
+		<div class="card shadow border-light mt-4">
+		  <div class="card-body">
 		    <h5 class="card-title">Supply Staked</h5>
 		    <div class="card-text">
 		    	<div class="text-center text-sm-end">
