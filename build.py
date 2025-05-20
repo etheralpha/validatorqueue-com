@@ -4,6 +4,7 @@ import math
 import time
 import json
 from datetime import datetime, timezone
+from dotenv import load_dotenv
 from partials.head import head
 from partials.dark_mode_toggle import dark_mode_toggle
 from partials.toast import toast
@@ -15,6 +16,10 @@ from partials.historical_charts import historical_charts
 from partials.footer import footer
 
 
+load_dotenv()
+PECTRAFIED_TOKEN = os.environ.get("PECTRAFIED_TOKEN")
+
+
 queue_endpoint = "https://beaconcha.in/api/v1/validators/queue"
 queue_data = requests.get(queue_endpoint).json()["data"]
 epoch_endpoint = "https://mainnet.beaconcha.in/api/v1/epoch/finalized"
@@ -23,6 +28,7 @@ apr_endpoint = "https://beaconcha.in/api/v1/ethstore/latest"
 apr_data = requests.get(apr_endpoint).json()["data"]
 supply_endpoint = "https://ultrasound.money/api/v2/fees/supply-over-time"
 supply_data = requests.get(supply_endpoint).json()
+
 
 current_time = time.time()
 
@@ -161,9 +167,77 @@ def update_historical_data(entry_churn, exit_churn):
 			else:
 				print("historical data for the current date was already recorded")
 		return all_data
+
+
+def update_historical_conversion_data():
+	with open('historical_conversion_data.json', 'r') as f:
+		all_data = json.load(f)
+		date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+		# print("\nhistorical_conversion_data: \n\t" + str(all_data))
+		if len(all_data) > 0 and all_data[-1].get('date') is not None:
+			# proceed only if data wasn't already save for current day
+			if date != all_data[-1]['date']:
+				url = 'https://www.pectrified.com/803c7cb4cfee45cb82d29ad8102cdd0c'
+				response = requests.get(url, headers={'X-Pectrified-Auth': PECTRAFIED_TOKEN})
+				# proceed only if successfull call
+				if response.status_code == 200:
+					pectrafied_data = response.json()
+					# response scheme example
+					# {
+						# "stateDate":"2025-05-19T00:18:35.000Z",
+						# "stateEpoch":366640,
+						# "stateSlot":11732491,
+						# "activeValidators":{
+						# 	"count":{
+						# 		"total":1056691,
+						# 		"0x00":12155,
+						# 		"0x01":1041644,
+						# 		"0x02":2892
+						# 	},
+						# 	"value":{
+						# 		"total":"34133402000000000",
+						# 		"0x00":"388764000000000",
+						# 		"0x01":"33332369000000000",
+						# 		"0x02":"412269000000000"
+						# 	}
+						# }
+					# }
+					todays_data = {
+					  "date": date,
+					  "slot":pectrafied_data['stateSlot'],
+					  "count": {
+					    "total":pectrafied_data['activeValidators']['count']['total'],
+					    "0x00":pectrafied_data['activeValidators']['count']['0x00'],
+					    "0x01":pectrafied_data['activeValidators']['count']['0x01'],
+					    "0x02":pectrafied_data['activeValidators']['count']['0x02']
+					  },
+					  "change": {
+					    "total":pectrafied_data['activeValidators']['count']['total'] - all_data[-1]['count']['total'],
+					    "0x00":pectrafied_data['activeValidators']['count']['0x00'] - all_data[-1]['count']['0x00'],
+					    "0x01":pectrafied_data['activeValidators']['count']['0x01'] - all_data[-1]['count']['0x01'],
+					    "0x02":pectrafied_data['activeValidators']['count']['0x02'] - all_data[-1]['count']['0x02']
+					  },
+					  "value": {
+					    "total":round(int(pectrafied_data['activeValidators']['value']['total'])/1000000000),
+					    "0x00":round(int(pectrafied_data['activeValidators']['value']['0x00'])/1000000000),
+					    "0x01":round(int(pectrafied_data['activeValidators']['value']['0x01'])/1000000000),
+					    "0x02":round(int(pectrafied_data['activeValidators']['value']['0x02'])/1000000000)
+					  }
+					}
+					print("\ntodays_conversion_data: \n\t" + str(todays_data))
+					all_data.append(todays_data)
+					with open('historical_conversion_data.json', 'w') as f:
+						json.dump(all_data, f, indent=None, separators=(',', ':'))
+					f.close()
+					print("historical conversion data has been updated")
+				else:
+					print ("pectrified call failed")
+			else:
+				print("historical conversion data for the current date was already recorded")
+		return all_data
 					
 
-def generate_html(entry_waiting_time, beaconchain_entering, exit_waiting_time, beaconchain_exiting, active_validators, entry_churn, exit_churn, amount_eth_staked, percent_eth_staked, staking_apr, historical_data):
+def generate_html(entry_waiting_time, beaconchain_entering, exit_waiting_time, beaconchain_exiting, active_validators, entry_churn, exit_churn, amount_eth_staked, percent_eth_staked, staking_apr, historical_data, historical_conversion_data):
 	html_content = f"""<!DOCTYPE html>
 		<html lang="en">
 		{head}
@@ -176,7 +250,7 @@ def generate_html(entry_waiting_time, beaconchain_entering, exit_waiting_time, b
 				{faq}
 				{churn_schedule(queue_data["validatorscount"])}
 				{historical_charts}
-				{footer(historical_data)}
+				{footer(historical_data, historical_conversion_data)}
 			</div>
 		</body>
 		</html>"""
@@ -189,5 +263,6 @@ entry_waiting_time, entry_waiting_time_days, beaconchain_entering, active_valida
 exit_waiting_time, exit_waiting_time_days, beaconchain_exiting, exit_churn = estimate_exit_waiting_time()
 eth_supply, amount_eth_staked, percent_eth_staked, staking_apr = network_data()
 historical_data = update_historical_data(entry_churn, exit_churn)
+historical_conversion_data = update_historical_conversion_data()
 
-generate_html(entry_waiting_time, beaconchain_entering, exit_waiting_time, beaconchain_exiting, active_validators, entry_churn, exit_churn, amount_eth_staked, percent_eth_staked, staking_apr, historical_data)
+generate_html(entry_waiting_time, beaconchain_entering, exit_waiting_time, beaconchain_exiting, active_validators, entry_churn, exit_churn, amount_eth_staked, percent_eth_staked, staking_apr, historical_data, historical_conversion_data)
