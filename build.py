@@ -34,7 +34,7 @@ current_time = time.time()
 
 
 def estimate_entry_waiting_time():
-	beaconchain_entering = round(queue_data["beaconchain_entering"])
+	beaconchain_entering = round(queue_data["beaconchain_entering_balance"]/1000000000)
 	active_validators = queue_data["validatorscount"]
 	entry_waiting_time, entry_waiting_time_days, entry_churn, entry_churn_time_days = calculate_wait_time(active_validators, beaconchain_entering, "entry")
 	print("\nbeaconchain_entering: \n\t" + str(beaconchain_entering))
@@ -44,7 +44,7 @@ def estimate_entry_waiting_time():
 
 
 def estimate_exit_waiting_time():
-	beaconchain_exiting = round(queue_data["beaconchain_exiting"])
+	beaconchain_exiting = round(queue_data["beaconchain_exiting_balance"]/1000000000)
 	active_validators = queue_data["validatorscount"]
 	exit_waiting_time, exit_waiting_time_days, exit_churn, exit_churn_time_days = calculate_wait_time(active_validators, beaconchain_exiting, "exit")
 	print("\nbeaconchain_exiting: \n\t" + str(beaconchain_exiting))
