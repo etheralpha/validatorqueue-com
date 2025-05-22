@@ -5,7 +5,7 @@ def footer(historical_data, historical_conversion_data):
 		<hr class="mt-5">
 
 	    <p class="text-center my-0 text-muted">
-	    	Made by <a href="https://etheralpha.org" target="_blank">Ether Alpha</a> with <small>❤️</small>
+	    	Made by <a href="https://twitter.com/hanni_abu" target="_blank">hanniabu.eth</a> with <small>❤️</small>
 		</p>
 
 		<p class="text-center my-4">
