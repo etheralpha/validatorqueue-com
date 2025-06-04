@@ -21,6 +21,7 @@ To execute/build locally:
 
 - Due to a post-Pectra bug, entry/exit queue (ETH + time) from May 7, 2025 - May 21, 2025 is inaccurate and based on validators rather than balance. An approximate for the correct values can be made by multiplying those values by 32. In the future the data will be adjusted in this way and a note will be made here.
 - On May 7, 2025 the queue data has shifted from validator-based to ETH-based. This change is not accounted for in the data.
+- Due to a bug, historical conversion data is missing from 2025-05-21 through 2025-06-03 (including those dates as well).
 
 
 
