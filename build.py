@@ -227,6 +227,7 @@ def update_historical_conversion_data():
 					}
 					print("\ntodays_conversion_data: \n\t" + str(todays_data))
 					all_data.append(todays_data)
+					print('latest conversion data', all_data[-1])
 					with open('historical_conversion_data.json', 'w') as f:
 						json.dump(all_data, f, indent=None, separators=(',', ':'))
 					f.close()
