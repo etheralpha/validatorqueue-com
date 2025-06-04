@@ -179,6 +179,7 @@ def update_historical_conversion_data():
 			if date != all_data[-1]['date']:
 				url = 'https://www.pectrified.com/803c7cb4cfee45cb82d29ad8102cdd0c'
 				response = requests.get(url, headers={'X-Pectrified-Auth': PECTRAFIED_TOKEN})
+				print('pectrified response', response)
 				# proceed only if successfull call
 				if response.status_code == 200:
 					pectrafied_data = response.json()
