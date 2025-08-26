@@ -89,7 +89,7 @@ historical_charts = f"""
 
 		<div class="card shadow border-light mt-4">
 		  <div class="card-body">
-		    <h5 class="card-title">Staking APR (7d)</h5>
+		    <h5 class="card-title">Staking APR</h5>
 		    <div class="card-text">
 		    	<div class="text-center text-sm-end">
 			    	{chart_filter("aprChart")}
