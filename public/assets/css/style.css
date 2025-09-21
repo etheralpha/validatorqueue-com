@@ -77,7 +77,7 @@ body {
 
 
 
-#historicalCharts canvas {
+.card canvas {
     /*background-image: url("https://i.imgur.com/pEoiiQP.png");*/
     background-image: url("/assets/img/watermark.png");
     background-size: contain;
