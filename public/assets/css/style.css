@@ -74,3 +74,14 @@ body {
 .dark-mode .table tbody tr.active td {
     background-color: var(--bs-gray-800);
 }
+
+
+
+#historicalCharts canvas {
+    /*background-image: url("https://i.imgur.com/pEoiiQP.png");*/
+    background-image: url("/assets/img/watermark.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
