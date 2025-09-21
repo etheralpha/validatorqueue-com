@@ -1,7 +1,7 @@
 from partials.chart_filter import chart_filter
 
 historical_charts = f"""
-	<div class="row row-cols-1 justify-content-center mx-1">
+	<div id="historicalCharts" class="row row-cols-1 justify-content-center mx-1">
 
 		<div class="card shadow border-light mt-4">
 		  <div class="card-body">
