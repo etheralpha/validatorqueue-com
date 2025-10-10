@@ -63,6 +63,10 @@ def overview(entry_waiting_time, beaconchain_entering, exit_waiting_time, beacon
 			    		<span>Pectrified: </span>
 			    		<span><a href="https://pectrified.com/mainnet" target="_blank">Queues & Requests</a></span>
 		    		</div>
+		    		<div class="d-flex justify-content-between">
+			    		<span>MigaLabs: </span>
+			    		<span><a href="https://www.migalabs.io/consolidations" target="_blank">Daily Consolidations</a></span>
+		    		</div>
 				    <div class="d-flex justify-content-between">
 				    	<span>Beaconcha.in: </span>
 				    	<span><a href="https://light-mainnet.beaconcha.in/validators/el_consolidations" target="_blank">Requests</a></span>
