@@ -177,7 +177,7 @@ def update_historical_conversion_data():
 		if len(all_data) > 0 and all_data[-1].get('date') is not None:
 			# proceed only if data wasn't already save for current day
 			if date != all_data[-1]['date']:
-				url = 'https://www.pectrified.com/803c7cb4cfee45cb82d29ad8102cdd0c'
+				url = 'https://api.soloboost.io/803c7cb4cfee45cb82d29ad8102cdd0c'
 				response = requests.get(url, headers={'X-Pectrified-Auth': PECTRAFIED_TOKEN})
 				print('pectrified response', response)
 				# proceed only if successfull call
