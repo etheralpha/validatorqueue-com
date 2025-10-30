@@ -57,7 +57,7 @@ def overview(entry_waiting_time, beaconchain_entering, exit_waiting_time, beacon
 
 			<div class="card shadow border-light" style="max-width: 18rem;">
 			  <div class="card-body">
-			    <h5 class="card-title">Consolidations</h5>
+			    <h5 class="card-title">Consolidation Queue</h5>
 			    <div class="card-text">
 			    	<div class="d-flex justify-content-between">
 			    		<span>Pectrified: </span>
