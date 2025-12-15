@@ -18,14 +18,30 @@ from partials.footer import footer
 
 load_dotenv()
 PECTRAFIED_TOKEN = os.environ.get("PECTRAFIED_TOKEN")
+BEACONCHAIN_TOKEN = os.environ.get("BEACONCHAIN_TOKEN")
 
 
-queue_endpoint = "https://beaconcha.in/api/v1/validators/queue"
-queue_data = requests.get(queue_endpoint).json()["data"]
-epoch_endpoint = "https://mainnet.beaconcha.in/api/v1/epoch/finalized"
-epoch_data = requests.get(epoch_endpoint).json()["data"]
-apr_endpoint = "https://beaconcha.in/api/v1/ethstore/latest"
-apr_data = requests.get(apr_endpoint).json()["data"]
+# queue data
+queue_endpoint = f"https://beaconcha.in/api/v1/validators/queue?apikey={BEACONCHAIN_TOKEN}"
+queue_response = requests.get(queue_endpoint).json()
+print(f"queue_response: {queue_response}")
+queue_data = queue_response["data"]
+
+# network data
+time.sleep(61) # abide by beaconcha.in ratelimit
+epoch_endpoint = f"https://beaconcha.in/api/v1/epoch/finalized?apikey={BEACONCHAIN_TOKEN}"
+epoch_response = requests.get(epoch_endpoint).json()
+print(f"epoch_response: {epoch_response}")
+epoch_data = epoch_response["data"]
+
+# apr data
+time.sleep(61) # abide by beaconcha.in ratelimit
+apr_endpoint = f"https://beaconcha.in/api/v1/ethstore/latest?apikey={BEACONCHAIN_TOKEN}"
+apr_response = requests.get(apr_endpoint).json()
+print(f"apr_response: {apr_response}")
+apr_data = apr_response["data"]
+
+# eth supply
 supply_endpoint = "https://ultrasound.money/api/v2/fees/supply-over-time"
 supply_data = requests.get(supply_endpoint).json()
 
