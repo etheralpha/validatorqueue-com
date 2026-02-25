@@ -32,6 +32,7 @@ jobs:
       run: python build.py
       env:
         PECTRAFIED_TOKEN: ${{ secrets.PECTRAFIED_TOKEN }}
+        BEACONCHAIN_TOKEN: ${{ secrets.BEACONCHAIN_TOKEN }}
       
     - name: Commit and push changes
       env:
