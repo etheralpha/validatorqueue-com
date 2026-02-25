@@ -23,27 +23,61 @@ BEACONCHAIN_TOKEN = os.environ.get("BEACONCHAIN_TOKEN")
 
 # queue data
 queue_endpoint = f"https://beaconcha.in/api/v1/validators/queue?apikey={BEACONCHAIN_TOKEN}"
-queue_response = requests.get(queue_endpoint).json()
-print(f"queue_response: {queue_response}")
-queue_data = queue_response["data"]
+try:
+	queue_response = requests.get(queue_endpoint)
+	queue_response.raise_for_status()
+	queue_json = queue_response.json()
+	print(f"queue_json: {queue_json}")
+	queue_data = queue_json["data"]
+except Exception as e:
+	print(f"Error fetching queue data: {e}")
+	print(f"Queue Response: {queue_response.text}")
+	exit(1)
+
 
 # network data
 time.sleep(61) # abide by beaconcha.in ratelimit
 epoch_endpoint = f"https://beaconcha.in/api/v1/epoch/finalized?apikey={BEACONCHAIN_TOKEN}"
-epoch_response = requests.get(epoch_endpoint).json()
-print(f"epoch_response: {epoch_response}")
-epoch_data = epoch_response["data"]
+try:
+	epoch_response = requests.get(epoch_endpoint)
+	epoch_response.raise_for_status()
+	epoch_json = epoch_response.json()
+	print(f"epoch_json: {epoch_json}")
+	epoch_data = epoch_json["data"]
+except Exception as e:
+	print(f"Error fetching epoch data: {e}")
+	print(f"Epoch Response: {epoch_response.text}")
+	exit(1)
+
 
 # apr data
 time.sleep(61) # abide by beaconcha.in ratelimit
 apr_endpoint = f"https://beaconcha.in/api/v1/ethstore/latest?apikey={BEACONCHAIN_TOKEN}"
-apr_response = requests.get(apr_endpoint).json()
-print(f"apr_response: {apr_response}")
-apr_data = apr_response["data"]
+try:
+	apr_response = requests.get(apr_endpoint)
+	apr_response.raise_for_status()
+	apr_json = apr_response.json()
+	print(f"apr_json: {apr_json}")
+	apr_data = apr_json["data"]
+except Exception as e:
+	print(f"Error fetching apr data: {e}")
+	print(f"APR Response: {apr_response.text}")
+	exit(1)
+
+
 
 # eth supply
 supply_endpoint = "https://ultrasound.money/api/v2/fees/supply-over-time"
 supply_data = requests.get(supply_endpoint).json()
+try:
+	supply_response = requests.get(supply_endpoint)
+	supply_response.raise_for_status()
+	supply_data = supply_response.json()
+	print(f"supply_data: {supply_data}")
+except Exception as e:
+	print(f"Error fetching supply data: {e}")
+	print(f"Supply Response: {supply_response.text}")
+	exit(1)
 
 
 current_time = time.time()
