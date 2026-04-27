@@ -5,7 +5,7 @@ historical_charts = f"""
 
 		<div class="card shadow border-light mt-4">
 		  <div class="card-body">
-		    <h5 class="card-title">Validator Queue (ETH)</h5>
+		    <h5 class="card-title" id="validator-queue-eth">Validator Queue (ETH)</h5>
 		    <div class="card-text">
 		    	<div class="text-center text-sm-end">
 			    	{chart_filter("queueChart")}
@@ -19,7 +19,7 @@ historical_charts = f"""
 
 		<div class="card shadow border-light mt-4">
 		  <div class="card-body">
-		    <h5 class="card-title">Queue Wait Time (days)</h5>
+		    <h5 class="card-title" id="queue-wait-time">Queue Wait Time (days)</h5>
 		    <div class="card-text">
 		    	<div class="text-center text-sm-end">
 			    	{chart_filter("waitChart")}
@@ -33,7 +33,7 @@ historical_charts = f"""
 
 		<div class="card shadow border-light mt-4">
 		  <div class="card-body">
-		    <h5 class="card-title">Active Validators</h5>
+		    <h5 class="card-title" id="active-validators">Active Validators</h5>
 		    <div class="card-text">
 		    	<div class="text-center text-sm-end">
 			    	{chart_filter("validatorChart")}
@@ -47,7 +47,7 @@ historical_charts = f"""
 
 		<div class="card shadow border-light mt-4">
 		  <div class="card-body">
-		    <h5 class="card-title">Credentials (%)</h5>
+		    <h5 class="card-title" id="credentials-pct">Credentials (%)</h5>
 		    <div class="card-text">
 		    	<div class="text-center text-sm-end">
 			    	{chart_filter("credentialsPercentChart")}
@@ -61,7 +61,7 @@ historical_charts = f"""
 
 		<div class="card shadow border-light mt-4">
 		  <div class="card-body">
-		    <h5 class="card-title">Credentials (Δ)</h5>
+		    <h5 class="card-title" id="credentials-delta">Credentials (Δ)</h5>
 		    <div class="card-text">
 		    	<div class="text-center text-sm-end">
 			    	{chart_filter("credentialsDiffChart")}
@@ -75,7 +75,7 @@ historical_charts = f"""
 
 		<div class="card shadow border-light mt-4">
 		  <div class="card-body">
-		    <h5 class="card-title">Supply Staked</h5>
+		    <h5 class="card-title" id="supply-staked">Supply Staked</h5>
 		    <div class="card-text">
 		    	<div class="text-center text-sm-end">
 			    	{chart_filter("stakedChart")}
@@ -89,7 +89,7 @@ historical_charts = f"""
 
 		<div class="card shadow border-light mt-4">
 		  <div class="card-body">
-		    <h5 class="card-title">Staking APR (7d)</h5>
+		    <h5 class="card-title" id="staking-apr">Staking APR (7d)</h5>
 		    <div class="card-text">
 		    	<div class="text-center text-sm-end">
 			    	{chart_filter("aprChart")}
