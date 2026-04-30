@@ -3,22 +3,52 @@ import os
 import math
 import time
 import json
+import sys
 from datetime import datetime, timezone
 from dotenv import load_dotenv
 from partials.head import head
 from partials.dark_mode_toggle import dark_mode_toggle
 from partials.toast import toast
+from partials.notification import notification
 from partials.header import header
 from partials.overview import overview
 from partials.faq import faq
 from partials.churn_schedule import churn_schedule
 from partials.historical_charts import historical_charts
+from partials.historical_data_json import historical_data_json
 from partials.footer import footer
 
 
 load_dotenv()
 PECTRAFIED_TOKEN = os.environ.get("PECTRAFIED_TOKEN")
 BEACONCHAIN_TOKEN = os.environ.get("BEACONCHAIN_TOKEN")
+
+
+###############
+# FOR TESTING
+###############
+
+def generate_base_html():
+	html_content = f"""<!DOCTYPE html>
+		<html lang="en">
+		{head}
+		<body>
+			{dark_mode_toggle}
+			{toast()}
+			{notification()}
+			<div class="container">
+				{footer()}
+			</div>
+		</body>
+		</html>"""
+	with open("public/index.html", "w") as f:
+		f.write(html_content)
+	sys.exit()
+
+# generate_base_html()
+
+###############
+
 
 
 # queue data
@@ -295,13 +325,15 @@ def generate_html(entry_waiting_time, beaconchain_entering, exit_waiting_time, b
 		<body>
 			{dark_mode_toggle}
 			{toast()}
+			{notification()}
 			<div class="container">
 				{header(current_time)}
 				{overview(entry_waiting_time, beaconchain_entering, exit_waiting_time, beaconchain_exiting, entry_churn, exit_churn, active_validators, amount_eth_staked, percent_eth_staked, staking_apr)}
 				{faq}
 				{churn_schedule(queue_data["validatorscount"])}
 				{historical_charts}
-				{footer(historical_data, historical_conversion_data)}
+				{historical_data_json(historical_data, historical_conversion_data)}
+				{footer()}
 			</div>
 		</body>
 		</html>"""
@@ -317,3 +349,4 @@ historical_data = update_historical_data(entry_churn, exit_churn)
 historical_conversion_data = update_historical_conversion_data()
 
 generate_html(entry_waiting_time, beaconchain_entering, exit_waiting_time, beaconchain_exiting, active_validators, entry_churn, exit_churn, amount_eth_staked, percent_eth_staked, staking_apr, historical_data, historical_conversion_data)
+
