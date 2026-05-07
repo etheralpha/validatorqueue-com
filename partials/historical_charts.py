@@ -59,6 +59,7 @@ historical_charts = f"""
 		  </div>
 		</div>
 
+		<!--
 		<div class="card shadow border-light mt-4">
 		  <div class="card-body">
 		    <h5 class="card-title" id="credentials-delta">Credentials (Δ) <a href="#credentials-delta" class="anchor-link">#</a></h5>
@@ -72,6 +73,7 @@ historical_charts = f"""
 			</div>
 		  </div>
 		</div>
+		-->
 
 		<div class="card shadow border-light mt-4">
 		  <div class="card-body">
