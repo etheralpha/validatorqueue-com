@@ -66,7 +66,7 @@ except Exception as e:
 
 
 # network data
-time.sleep(61) # abide by beaconcha.in ratelimit
+time.sleep(2) # abide by beaconcha.in ratelimit
 epoch_endpoint = f"https://beaconcha.in/api/v1/epoch/finalized?apikey={BEACONCHAIN_TOKEN}"
 try:
 	epoch_response = requests.get(epoch_endpoint)
@@ -81,7 +81,7 @@ except Exception as e:
 
 
 # apr data
-time.sleep(61) # abide by beaconcha.in ratelimit
+time.sleep(2) # abide by beaconcha.in ratelimit
 apr_endpoint = f"https://beaconcha.in/api/v1/ethstore/latest?apikey={BEACONCHAIN_TOKEN}"
 try:
 	apr_response = requests.get(apr_endpoint)
@@ -134,7 +134,7 @@ def estimate_exit_waiting_time():
 
 
 def network_data():
-	eth_supply = round(supply_data["d1"][0]["supply"])
+	eth_supply = round(supply_data["d7"][0]["supply"])
 	print("\neth_supply: \n\t" + str(eth_supply))
 	amount_eth_staked = round(epoch_data["votedether"]/1000000000)
 	print("\namount_eth_staked: \n\t" + str(amount_eth_staked))
