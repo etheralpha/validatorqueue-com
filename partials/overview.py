@@ -1,5 +1,13 @@
 def overview(entry_waiting_time, beaconchain_entering, exit_waiting_time, beaconchain_exiting, entry_churn, exit_churn, active_validators, amount_eth_staked, percent_eth_staked, staking_apr):
 	return f"""
+		<div class="d-flex justify-content-center mb-4">
+      <div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 border bg-body-tertiary text-muted small" role="note">
+        <span aria-hidden="true">ⓘ</span>
+        <span>New to staking? Get started at <a href="https://ethstaker.org/staking" target="_blank" rel="noopener noreferrer" class="fw-semibold" style="color: var(--bs-body-color);">ethstaker.org</a></span>
+      </div>
+    </div>
+
+
 		<div class="row row-cols-1 row-cols-md-2 gap-4 justify-content-center mx-1">
 
 			<div class="card shadow border-light" style="max-width: 18rem;">
