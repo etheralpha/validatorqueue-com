@@ -26,4 +26,39 @@ To execute/build locally:
 
 
 This project is maintained by [hanniabu.eth](https://twitter.com/hanni_abu).
+graph TB
+    subgraph Data["Data Collection & Storage"]
+        A[Ethereum Network] -->|Query Validator State| B[Data Collector]
+        B -->|Process & Transform| C[historical_data.json]
+        C -->|Store Historical Records| D[(JSON Database)]
+    end
+    
+    subgraph Automation["Automated Workflows"]
+        E[GitHub Actions Scheduler] -->|Trigger Updates| F[Update Job]
+        F -->|Fetch Latest Data| B
+        F -->|Commit Changes| G[Git Repository]
+    end
+    
+    subgraph UI["Web Frontend"]
+        H[index.html] -->|Display| I[Validator Queue Dashboard]
+        J[CSS Styles] --> I
+        K[JavaScript Logic] --> I
+        C -->|Feed Data| I
+    end
+    
+    subgraph Metrics["Key Metrics Tracked"]
+        L["🔢 Validator Count"]
+        M["📊 Entry Queue Size"]
+        N["⏱️ Wait Times"]
+        O["📈 Churn Rates"]
+        P["💰 Staked Amount"]
+    end
+    
+    D -.->|Historical Analysis| I
+    I -.->|Display| Metrics
+    
+    style Data fill:#e1f5ff
+    style Automation fill:#fff3e0
+    style UI fill:#f3e5f5
+    style Metrics fill:#e8f5e9
 
